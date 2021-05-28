@@ -21,6 +21,14 @@ namespace controller.CategoryController
             return categories;
         }
 
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<ActionResult<Category>> Get([FromServices] DataContext context, int id)
+        {
+            var category = await context.Categories.AsNoTracking().FirstOrDefaultAsync(obj => obj.Id == id);
+            return category;
+        }
+
         [HttpPost]
         [Route("")]
         public async Task<ActionResult<Category>> Post([FromServices] DataContext context, [FromBody]Category model)
@@ -36,5 +44,15 @@ namespace controller.CategoryController
                 return BadRequest(ModelState);
             }
         }
+
+        [HttpPut]
+        [Route("{id:int}")]
+        public async Task<ActionResult<Category>> Put([FromServices] DataContext context, [FromBody]Category category)
+        {
+            context.Categories.Update(category);
+            await context.SaveChangesAsync();
+            return context.Categories.AsNoTracking().FirstOrDefault(obj => obj.Id == category.Id);
+        }
+
     }
 }
