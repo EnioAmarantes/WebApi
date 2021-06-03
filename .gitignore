@@ -1,4 +1,4 @@
-obj\Debug
+obj\*
 bin\*
 .vscode
 .vs
