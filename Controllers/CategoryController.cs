@@ -36,7 +36,7 @@ namespace controller.CategoryController
             if(ModelState.IsValid)
             {
                 context.Categories.Add(model);
-                await context.SaveChangesAsync();
+                model.Id = await context.SaveChangesAsync();
                 return model;
             }
             else
@@ -46,12 +46,28 @@ namespace controller.CategoryController
         }
 
         [HttpPut]
-        [Route("{id:int}")]
+        [Route("")]
         public async Task<ActionResult<Category>> Put([FromServices] DataContext context, [FromBody]Category category)
         {
             context.Categories.Update(category);
             await context.SaveChangesAsync();
             return context.Categories.AsNoTracking().FirstOrDefault(obj => obj.Id == category.Id);
+        }
+
+        [HttpDelete]
+        [Route("")]
+        public async Task<ActionResult<string>> Delete([FromServices] DataContext context, [FromBody] Category category)
+        {
+            try
+            {
+                context.Categories.Remove(category);
+                await context.SaveChangesAsync();
+                return $"Categoria: { category.Title } removida com sucesso.";
+            }
+            catch (DbUpdateException ex) 
+            {
+                return $"Não foi possível remover a categoria: { category.Title } verifique o erro abaixo:\n { ex.Message }";
+            }
         }
 
     }

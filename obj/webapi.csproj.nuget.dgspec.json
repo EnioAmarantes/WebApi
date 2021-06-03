@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PRojetinhos\\webapi\\webapi\\webapi.csproj": {}
+    "D:\\Projetinhos\\webapi\\webapi.csproj": {}
   },
   "projects": {
-    "D:\\PRojetinhos\\webapi\\webapi\\webapi.csproj": {
+    "D:\\Projetinhos\\webapi\\webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PRojetinhos\\webapi\\webapi\\webapi.csproj",
+        "projectUniqueName": "D:\\Projetinhos\\webapi\\webapi.csproj",
         "projectName": "webapi",
-        "projectPath": "D:\\PRojetinhos\\webapi\\webapi\\webapi.csproj",
+        "projectPath": "D:\\Projetinhos\\webapi\\webapi.csproj",
         "packagesPath": "C:\\Users\\enio\\.nuget\\packages\\",
-        "outputPath": "D:\\PRojetinhos\\webapi\\webapi\\obj\\",
+        "outputPath": "D:\\Projetinhos\\webapi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -26,7 +26,6 @@
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://pkgs.dev.azure.com/forlogic/_packaging/Metroex-Desktop/nuget/v3/index.json": {}
         },
         "frameworks": {
@@ -72,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
