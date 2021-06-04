@@ -59,7 +59,6 @@ namespace webapi
             return products;
         }
 
-
         //POST
         [HttpPost]
         [Route("")]
@@ -82,9 +81,44 @@ namespace webapi
             }
         }
 
+        //PUT
+        [HttpPut]
+        [Route("")]
+        public async Task<ActionResult<Product>> Put([FromServices] DataContext context, [FromBody] Product model)
+        {
+            if(ModelState.IsValid)
+            {
+                context.Update(model);
+                await context.SaveChangesAsync();
+                return context
+                    .Products
+                    .Include(p => p.Category)
+                    .AsNoTracking()
+                    .Where(p => p.Id == model.Id)
+                    .FirstOrDefault();
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+
         //DELETE
-        //[HttpDelete]
-        //[Route("{id:int}")]
+        [HttpDelete]
+        [Route("")]
+        public async Task<ActionResult<string>> Delete([FromServices] DataContext context, [FromBody] Product product )
+        {
+            try
+            {
+                context.Products.Remove(product);
+                await context.SaveChangesAsync();
+                return $"Producto { product.title } removido com sucesso.";
+            }
+            catch (DbUpdateException ex)
+            {
+                return $"Não foi possível remover o produto { product.title } verifique o erro abaixo: \n { ex.Message }";
+            }
+        }
         
     }
 }

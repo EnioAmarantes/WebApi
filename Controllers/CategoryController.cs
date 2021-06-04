@@ -36,8 +36,12 @@ namespace controller.CategoryController
             if(ModelState.IsValid)
             {
                 context.Categories.Add(model);
-                model.Id = await context.SaveChangesAsync();
-                return model;
+                await context.SaveChangesAsync();
+                return context
+                    .Categories
+                    .AsNoTracking()
+                    .Where(p => p.Id == model.Id)
+                    .FirstOrDefault();
             }
             else
             {
@@ -49,9 +53,19 @@ namespace controller.CategoryController
         [Route("")]
         public async Task<ActionResult<Category>> Put([FromServices] DataContext context, [FromBody]Category category)
         {
+            if(ModelState.IsValid)
+            {
             context.Categories.Update(category);
             await context.SaveChangesAsync();
-            return context.Categories.AsNoTracking().FirstOrDefault(obj => obj.Id == category.Id);
+            return context
+                .Categories
+                .AsNoTracking()
+                .FirstOrDefault(obj => obj.Id == category.Id);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
 
         [HttpDelete]
