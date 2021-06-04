@@ -6,5 +6,5 @@
     dotnet add package Microsoft.EntityFrameworkCore.InMemory
 
 # Extensões utilizadas
-    *C# ms-dotnettools.csharp
-    *Live Server ritwickdey.liveserver
+    C# ms-dotnettools.csharp
+    Live Server ritwickdey.liveserver
